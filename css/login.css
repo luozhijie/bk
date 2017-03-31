@@ -1,0 +1,38 @@
+/* CSS Document */
+*{
+	margin:0; padding:0;
+}
+
+.background{
+    background: url("../imgs/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.boxshadow{
+	box-shadow:5px 2px 6px #000;
+	-webkit-box-shadow:5px 2px 6px #000;
+	-moz-box-shadow:5px 2px 6px #000;
+	-o-box-shadow:5px 2px 6px #000;
+} 
+.yj{
+    padding:10px; width:300px; height:50px;
+    border: 2px solid #000000;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    border-radius:15px;
+	-o-border-radius: 15px; 
+}
+.btm{
+	filter:alpha(Opacity=50);
+	opacity: 0.5 
+	-moz-opacity:0.5;
+	-webkit-opacity:0.5;
+	-o-opacity:0.5;
+}
+.nobtm{  
+    position:relative;  
+    /*或者是absolute，都可以使文字不透明，这样做还是为了  
+    兼容ie9,ie8,ie7下背景透明而而背景上的文字不透明的效果*/  
+}  
