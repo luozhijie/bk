@@ -4,49 +4,41 @@
 <meta charset="UTF-8">
 <title>Untitled Document</title>
 </head>
-<? include("bootstrapinclude.php") ?>
-<body>
-<script>
-	function ajaxfresh(url){
-		$.ajax({
-　　　　　　type : "get",
-　　　　　　async : false,
-　　　　　　url : url,
-　　　　　　data : '{type:1}',
-			timeout : 3000,
-			success : function(page){
-　　　　　　　　$("#mainContent").html(page);
-　　　　　　},
-　　　　　　error : function(){
-　　　　　　　　console.log("faild");
-　　　　　　}
-　　　　});
-　　}
 
-function  getmore(url){
-$.getJSON(url,function(data){
-var $jsontip = $("#mainContent"); 
-var strHtml="" ;//存储数据的变量 
-$.each(data,function(infoIndex,info){ 
-strHtml += info["id"];
-})
-$jsontip.append(strHtml);//显示处理后的数据 
-}) 
-}
-			
-	function  getmore1(url){
-		alert("aaa");
-$.getJSON(url,function(data){
-var $jsontip = $("#tbody1"); 
-var strHtml="" ;//存储数据的变量 
-$.each(data,function(infoIndex,info){ 
-strHtml += "<tr><td><img src='userimg/".info["id"]."' class='img-circle'></img></td><td>".info["img"]."</td><td>".info["username"]."</td><td>".info["password"]."</td><td>".info["blogtimes"]."</td><td>".info["isroot"]."</td><td>".info["lastonline"]."</td><td><div class='btn-group btn-group-xs'><button type='button' class='btn btn-default' onClick=''>修改</button><button type='button' class='btn btn-default' onClick=''>删除</button><div class='btn-group-vertical btn-group-xs '><button type='button' class='btn btn-default dropdown-toggle btn-group-xs' data-toggle='dropdown' onClick=''>管理员设置<span class='caret'></span></button><ul class='dropdown-menu'><li><a href='#' onClick=''>是</a></li><li><a href='#' onClick=''>否</a></li></ul></div></div></td></tr>";
-})
-$jsontip.append(strHtml);//显示处理后的数据 
-}) 
-}
-</script>
-<a href="#" onclick="getmore1('./get_user_list.php?page=1')">click</a>
-<div id="tbody1"></div>
+<body>
+	<script>
+	 function test(){
+            var form = new FormData(document.getElementById("tf"));
+//             var req = new XMLHttpRequest();
+//             req.open("post", "${pageContext.request.contextPath}/public/testupload", false);
+//             req.send(form);
+            $.ajax({
+                url:"upload_img.php",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    window.clearInterval(timer);
+                    console.log("over..");
+                },
+                error:function(e){
+                    alert("错误！！");
+                    window.clearInterval(timer);
+                }
+            });        
+            get();//此处为上传文件的进度条
+        }
+	</script>
+	
+	<form action="upload_img.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file" /> 
+<br />
+		<button type="button" name="submit" value="Submit" onClick="return test();"></button>
+</form>
+
+
 </body>
 </html>
