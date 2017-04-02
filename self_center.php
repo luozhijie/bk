@@ -26,7 +26,7 @@ console.log("正在进行，请稍候");
 },
 success : function(responseStr) {
 	alert(responseStr);
-	document.getElementById("userimg").src=responseStr;
+	document.getElementById("userimg").src="userimg/"+responseStr;
 if(responseStr.status===0){
 	document.getElementById("userimg").src=responseStr;
 console.log("成功"+responseStr);
@@ -39,6 +39,12 @@ console.log("error");
 	alert(responseStr);
 } 
 });}
+	   
+function uploadgxqm(){
+	 $.post("set_gxqm.php",{gxqm : document.getElementById("ttgxqm").value},function(data,status){
+        alert("Data: " + data + "nStatus: " + status);
+    });
+}
 </script>
 <? include("nav.php") ?>
 
@@ -50,7 +56,7 @@ console.log("error");
     <div class="panel-body">
 		<div style="width: 150px; height: 200px; margin: 0 auto;">
 			<div style="widows: 150px; height: 150px">
-				<img src="userimg/default.jpg" class="img-circle" id="userimg">
+				<img style="width: 150px; height: 150px" src="userimg/<?include("get_self_center_img.php")?>" class="img-circle" id="userimg">
 				</img>
 			</div>
 		<div style="width: 150px; height: 50px;">
@@ -100,9 +106,9 @@ console.log("error");
 	</div>
 	<div class="panel-body">
 		<div style="width: 700px;margin: 0 auto;">
-			<textarea style="width:700px; height:500px; border:solid 1px #f00; border-radius:20px; resize:none;"></textarea>
+			<textarea id="ttgxqm" name="gxqm" style="width:700px; height:500px; border:solid 1px #f00; border-radius:20px; resize:none;"><? include("get_gxqm.php") ?></textarea>
 		</div>
-		<div style="text-align: center"> 
+		<div style="text-align: center" onClick="return uploadgxqm();"> 
 			<button type="button" class="btn btn-info" style="text-align: center;">更改个性签名</button>
 		</div>
 	</div>

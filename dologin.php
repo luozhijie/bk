@@ -13,6 +13,7 @@ if($info==null){
 	mysql_query($sql,$con);
 	$_SESSION["username"]=$info["username"];
 	$_SESSION["isroot"]=$info["isroot"];
+	$_SESSION["uid"] = $info["id"];
 	echo "<script language='javascript' type='text/javascript'>window.location.href='index.php';</script>";
 }
 ?>
