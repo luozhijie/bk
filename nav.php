@@ -27,9 +27,9 @@
         <li class=<?=$active==7?'active':'' ?>><a href="liuyanban.php?active=7">留言板</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-			<form class="navbar-form navbar-left">
+			<form class="navbar-form navbar-left" action="dosearch.php" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="搜索博文">
+          <input type="text" name="searchinfo" class="form-control" placeholder="搜索博文">
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>

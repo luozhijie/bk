@@ -10,7 +10,24 @@
 <body class="background">
 
 <? include("nav.php"); ?>
-
+<script language="javascript" type="text/javascript">
+	var page=1;
+		$(document).ready(function(){
+			getmore();
+})
+		function  getmore(){
+$.getJSON("./get_blog_list.php?page="+page,function(data){
+var $jsontip = $("#divlistpanel"); 
+var strHtml="" ;//存储数据的变量 
+$.each(data,function(infoIndex,info){
+	strHtml += "<div onclick=\" return window.location.href='one_blog.php?id="+info["id"]+"';\" class='panel-body' style='width: 620px;height: 180px; padding: 15px; margin: -2px auto; border:2px solid #FF4747; border-radius: 10px;'><div style='width: 150px; height: 150px;float: left';><img src='blogimg/"+info["img"]+"' class='img-circle'></img></div><div style='width: 416px; height: 150px; margin: auto 10px ; float: left; padding: 2px; '><div style='width: 416px; height: 40px;'>"+info["title"]+"</div><div style='width: 416px; height: 60px;margin: 1px auto;'>"+info["content"]+"</div><div style='width: 416px; height: 44px; margin: 1px auto;'><div style='width: 90px; height: 44px; background-color: red; float: left; '>"+info["username"]+"</div><div style='width: 80px; height: 44px; background-color: red; float: left;'>赞："+info["goodtimes"]+"</div><div style='width: 80px; height: 44px; background-color: red; float: left;'>评论数："+info["10"]+"</div><div style='width: 166px; height: 44px; background-color: red; float: left;'>"+info["date"]+"</div></div></div></div>";
+})
+$jsontip.append(strHtml);//显示处理后的数据 
+})
+page++;
+}
+</script>
+<div style="position: fixed;margin-right:100px;margin-bottom:100px;"><img width="150px" height="150px" src="imgs/add_blog.jpg" ></img></div>
 <div style="width: 920px; margin: 0 auto;">
 	<div style="width: 70%; float: left;">
 		<? include("carousel.php") ?>
@@ -24,76 +41,18 @@
 	</div>
 	<div class="panel-body">
 		<ul class="list-group small">
-	<li class="list-group-item">a</li>
-	<li class="list-group-item">b</li>
-	<li class="list-group-item">c</li>
-	<li class="list-group-item">d</li>
+		<? include("hot_search.php") ?>
+		<? foreach($hotsearchcontent as &$value){ ?>
+	<li class="list-group-item"><?=$value ?></li>
+	<? } ?>
 </ul>
 	</div>
 	</div>
 </div>
 <div style="width: 920px; margin: 0 auto; clear: both;">
 	
-	<div class="panel panel-default" style="width: 640px; float: left;">
-    <div class="panel-body" style="width: 620px;height: 180px; padding: 15px; margin: 0 auto; border:2px solid #FF4747; border-radius: 10px;">
-			<div style="width: 150px; height: 150px;float: left";>
-				<img src="blogimg/default.jpg" class="img-circle"></img>
-			</div>
-			<div style="width: 416px; height: 150px; margin: auto 10px ; float: left; padding: 2px; ">
-				<div style="width: 416px; height: 40px;">
-					title
-				</div>
-				<div style="width: 416px; height: 60px;margin: 1px auto;">
-					info1
-				</div>
-				<div style="width: 416px; height: 44px; margin: 1px auto;">
-					info2
-				</div>
-			</div>
-		</div>
-    <div class="panel-body" style="width: 620px;height: 180px; padding: 15px; margin: -2px auto; border:2px solid #FF4747; border-radius: 10px;">
-			<div style="width: 150px; height: 150px;float: left";>
-				<img src="blogimg/default.jpg" class="img-circle"></img>
-			</div>
-			<div style="width: 416px; height: 150px; margin: auto 10px ; float: left; padding: 2px; ">
-				<div style="width: 416px; height: 40px;">
-					title
-				</div>
-				<div style="width: 416px; height: 60px;margin: 1px auto;">
-					info1
-				</div>
-				<div style="width: 416px; height: 44px; margin: 1px auto;">
-					info2
-				</div>
-			</div>
-		</div>
-    <div class="panel-body" style="width: 620px;height: 180px; padding: 15px; margin: -2px auto; border:2px solid #FF4747; border-radius: 10px;">
-			<div style="width: 150px; height: 150px;float: left";>
-				<img src="blogimg/default.jpg" class="img-circle"></img>
-			</div>
-			<div style="width: 416px; height: 150px; margin: auto 10px ; float: left; padding: 2px; ">
-				<div style="width: 416px; height: 40px;">
-					title
-				</div>
-				<div style="width: 416px; height: 60px;margin: 1px auto;">
-					info1
-				</div>
-				<div style="width: 416px; height: 44px; margin: 1px auto;">
-					info2
-				</div>
-			</div>
-		</div>
-    <div style=" width: 250px; margin: 0 auto;">
-    <ul class="pagination">
-	<li><a href="#">&laquo;</a></li>
-	<li class="active"><a href="#">1</a></li>
-	<li><a href="#">2</a></li>
-	<li><a href="#">3</a></li>
-	<li><a href="#">4</a></li>
-	<li><a href="#">5</a></li>
-	<li><a href="#">&raquo;</a></li>
-</ul>
-</div>
+	<div  id="divlistpanel" class="panel panel-default" style="width: 640px; float: left;">
+    
 </div>
 
 <? include("tqyb.php") ?>

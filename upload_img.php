@@ -5,7 +5,7 @@ if(isset($_SESSION["uid"])){
 define('ROOTX',dirname(__FILE__).'/');  
 include("conn.php");
 	
-mysql_query();
+
   $filetype = $_FILES["file"]["type"];
 if ((( $filetype== "image/gif")  
      || ($filetype == "image/jpeg")  
@@ -47,7 +47,7 @@ if ((( $filetype== "image/gif")
 //            echo "Stored in: " . "userimg/" . $_FILES["file"]["name"];  
 			rename(ROOTX."userimg/".$_FILES["file"]["name"],ROOTX."userimg/".$md5.".jpg");
 			$request = mysql_query("UPDATE `bk`.`userlist` SET `img`='".$md5.".jpg"."' WHERE `id`='".$uid."';",$con);
-	$info = mysql_fetch_array($request);
+//	$info = mysql_fetch_array($request);
 			
 
 function resizeImage($im,$maxwidth,$maxheight,$name,$filetype)
