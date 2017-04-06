@@ -7,6 +7,31 @@
 <link href="css/index.css" rel=stylesheet type="text/css"/>
 <link href="css/login.css" rel="stylesheet" type="text/css"/>
 <body class="background">
+<script language="javascript" type="text/javascript">
+	var page=1;
+		$(document).ready(function(){
+			getmore();
+})
+		function  getmore(){
+$.getJSON("./get_blog_list.php?page="+page,function(data){
+var $jsontip = $("#tbody"); 
+var strHtml="" ;//存储数据的变量 
+$.each(data,function(infoIndex,info){
+	strHtml += "<tr><td>"+info["title"]+"</td><td>"+info["content"]+"</td><td>"+info["readtimes"]+"</td><td>"+info["11"]+"</td><td>"+info["goodtimes"]+"</td><td><div class='btn-group btn-group-xs'><button type='button' class='btn btn-default' onClick='return editBlogById("+info["id"]+")'>修改</button><button type='button' class='btn btn-default' onClick='return delBlogById("+info["id"]+")'>删除</button></div></td></tr>";
+})
+$jsontip.append(strHtml);//显示处理后的数据 
+})
+page++;
+}
+	
+	function delBlogById(bid){
+		 window.location="del_blog_by_id.php?bid="+bid+"";
+	}
+	
+	function editBlogById(bid){
+		window.location="edit_blog_by_id.php?bid="+bid+"";
+	}
+</script>
 
 <? include("nav.php"); ?>
 <div style="width: 880px;margin: 0 auto;background-color: white;border-radius:10px;">
@@ -22,23 +47,13 @@
 			<th width="100px">操作</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr>
-			<td>a</td>
-			<td>b</td>
-			<td>c</td>
-			<td>d</td>
-			<td>e</td>
-			<td>
-			<div class="btn-group btn-group-xs">
-	<button type="button" class="btn btn-default">修改</button>
-	<button type="button" class="btn btn-default">删除</button>
-			</div>
-			</td>
-		</tr>
+	<tbody id="tbody">
+	 
+		
 		
 	</tbody>
 </table>
+<button type="button" class="btn btn-primary btn-lg btn-block" onClick="getmore()">点击加载更多</button>
 	</div>
 </body>
 </html>

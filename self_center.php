@@ -7,7 +7,7 @@
 </head>
 <link href="css/index.css" rel=stylesheet type="text/css"/>
 <link href="css/login.css" rel="stylesheet" type="text/css"/>
-<link href="self_center.css" rel="stylesheet" type="text/css"/>
+<link href="css/self_center.css" rel="stylesheet" type="text/css"/>
 <body class="background">
 <script src="js/ajaxfileupload.js" type="text/javascript" language="javascript"></script>
    <script type="text/JavaScript">

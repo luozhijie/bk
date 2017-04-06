@@ -1,7 +1,7 @@
 <?
 include("conn.php");
 $array = array();
-$sql = "SELECT bloglist.*,userlist.img as uimg,username FROM bk.bloglist join userlist on userlist.id = userid limit ".(($_GET["page"]-1)*10).",".(($_GET["page"]*10)-1)."";
+$sql = "SELECT bloglist.*,userlist.img as uimg,username FROM bk.bloglist join userlist on userlist.id = userid group by id desc limit ".(($_GET["page"]-1)*10).",10";
 $result = mysql_query($sql,$con);
 while($row = mysql_fetch_array($result)){
 	$sql = "SELECT count(*) as count FROM bk.comment where bid = ".$row['id'].";";
@@ -14,6 +14,8 @@ while($row = mysql_fetch_array($result)){
 //	print_r($row);
 //	array_push($row,$count);
 	array_push($row,$row2['count']);
+	$row["content"] = strip_tags($row["content"]);
+	
 	array_push($array,$row);
 //	array_push($array,$count);
 }

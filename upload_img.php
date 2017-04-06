@@ -16,7 +16,7 @@ if ((( $filetype== "image/gif")
     {  
        // echo "Return Code: " . $_FILES["file"]["error"] . "<br />";  
     }  
-    else  
+    else
     {  
 //        echo "userimg: " . $_FILES["file"]["name"] . "<br />";  
 //        echo "Type: " . $_FILES["file"]["type"] . "<br />";  
@@ -28,9 +28,7 @@ if ((( $filetype== "image/gif")
 //            echo $_FILES["file"]["name"] . " already exists. ";  
         }  
         else  
-        {  
-			
-			
+        { 
             if(move_uploaded_file($_FILES["file"]["tmp_name"], ROOTX."userimg/".$_FILES["file"]["name"]))  
             {  
 //                echo "move ok<br/>";  

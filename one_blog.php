@@ -17,7 +17,13 @@
 						 $result =  mysql_query($sql,$con);
 						 if( $row = mysql_fetch_array($result)){
 ?>
-	<div style="width: 920px; margin: 0 auto; clear: both;background-color: wheat">
+
+	<div style="width: 920px; margin: 0 auto; clear: both;">
+		<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">详细信息</h3>
+	</div>
+	<div class="panel-body">
 		<div style="margin: 0 auto;width: 800px; height: 80px; font-size: 50px; text-align: center;">
 			<?=$row["title"] ?>
 		</div>
@@ -33,6 +39,8 @@
 		<div style="width: 300px;">
 			正文：<?=$row["content"] ?>
 		</div>
+	</div>
+</div>
 	</div>
 	<? }} ?>
 </body>

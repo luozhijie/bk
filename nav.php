@@ -14,7 +14,8 @@
        <li class=<?=$active==1?"active":"" ?>><a href="index.php?active=1">首页</a></li>
         <li class=<?=$active==2?"active":"" ?>><a href="aboutme.php?active=2">关于我</a></li>
         <li class=<?=$active==3?'active':'' ?>><a href="blog_liulan.php?active=3">博文</a></li>
-        <? if(isset($_SESSION["isroot"])?$_SESSION["isroot"]==1:false){ ?>
+        <? if(isset($_SESSION["isroot"])){ ?>
+        <? if($_SESSION["isroot"] == 1){ ?>
         <li class="dropdown <?=$active==4||$active==5||$active==6?"active":"" ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -23,7 +24,7 @@
             <li class=<?=$active==6?'active':'' ?>><a href="system_manager.php?active=6">系统管理</a></li>
           </ul>
         </li>
-        <? } ?>
+        <? }} ?>
         <li class=<?=$active==7?'active':'' ?>><a href="liuyanban.php?active=7">留言板</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
