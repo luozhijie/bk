@@ -18,6 +18,7 @@
 })
 		function  getmore(){
 $.getJSON("./get_comment_by_bid.php?page="+page+"&bid=<?=$id ?>",function(data){
+//	alert(data);
 var $jsontip = $("#commentpanel"); 
 var strHtml="" ;//存储数据的变量 
 $.each(data,function(infoIndex,info){
@@ -39,13 +40,17 @@ page++;
 			var comment = document.getElementById("comment").value;
 			var bid = <?=$id ?>;
 			var uid = <?=$_SESSION["uid"] ?>;
+			var $jsontip = $("#commentpanel"); 
+			var strHtml="" ;//存储数据的变量 
 			$.post("add_comment.php",{bid:bid,content: comment,uid:uid} ,function (data){
-				alert(data);
+				var obj = JSON.parse(data);
+//				alert(obj.date);
+				strHtml += "<div style=\"width: 800px; margin: 0 auto; border:1px solid #000396\"><div style=\"height: 50px\"><div style=\"width: 50px; height: 50px; float: left\"><img src=\"userimg/"+obj.img+"\" class=\"img-circle\" style=\"width: 50px; height: 50px;\"></img></div><div style=\"width: 200px; height: 20px; background-color: white; float: left; margin: 15px auto\">"+obj.username+"</div><div style=\"width:200px; height: 20px; background-color: white; float:right;margin: 15px 0auto auto; text-align: right\">"+obj.date+"</div></div><div style=\"width: 800px; clear: both;\">"+obj.content+"</div></div>";
+				$jsontip.before(strHtml);//显示处理后的数据
 			});
  
 		}
 	</script>
-
 <?
 	$sql = "select * from (SELECT * FROM bk.bloglist where id=$id) as a join userlist on userlist.id = userid;";
 						  include("conn.php");
