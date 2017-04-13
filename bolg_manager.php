@@ -25,7 +25,10 @@ page++;
 }
 	
 	function delBlogById(bid){
-		 window.location="del_blog_by_id.php?bid="+bid+"";
+	$.get("del_blog_by_id.php?bid="+bid, function(result){
+		alert("SHANCHUCHENGG");
+		location.reload();
+  });
 	}
 	
 	function editBlogById(bid){

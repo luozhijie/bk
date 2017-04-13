@@ -9,6 +9,9 @@
 <link href="css/login.css" rel="stylesheet" type="text/css"/>
 <body class="background">
 
+
+
+
 <? include("nav.php"); ?>
 		<?
 	if(isset($_SESSION["uid"])){
